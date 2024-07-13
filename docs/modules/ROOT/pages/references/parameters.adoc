@@ -41,6 +41,30 @@ controller:
 
 Configure resource requests and limits.
 
+
+== `library`
+
+[horizontal]
+type:: dictionary
+default:: `{}`
+
+Import template from https://github.com/open-policy-agent/gatekeeper-library/tree/master/library[gatekeeper-library].
+
+=== Examples
+
+[source,yaml]
+----
+library:
+  # import
+  general/externalip: {}
+  # modify import
+  general/requiredlabels:
+    metadata:
+      name: new-name
+  # remove import
+  general/storageclass: null
+----
+
 == `helmValues`
 
 [horizontal]
@@ -48,3 +72,6 @@ type:: dictionary
 default:: https://github.com/tegridy-io/component-gatekeeper/blob/master/class/defaults.yml[See component defaults]
 
 The Helm values to use when rendering the Helm charts.
+
+
+
