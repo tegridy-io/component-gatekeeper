@@ -1,0 +1,8 @@
+parameters:
+  gatekeeper:
+    library:
+      general/externalip: {}
+      general/requiredlabels:
+        metadata:
+          name: new-name
+      general/storageclass: null

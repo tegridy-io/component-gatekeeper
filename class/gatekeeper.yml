@@ -6,6 +6,10 @@ parameters:
         chart_name: gatekeeper
         version: ${gatekeeper:charts:gatekeeper:version}
         output_path: ${_base_directory}/helmcharts/gatekeeper/${gatekeeper:charts:gatekeeper:version}/
+      - type: git
+        source: https://github.com/open-policy-agent/gatekeeper-library.git
+        subdir: library
+        output_path: ${_base_directory}/manifests/gatekeeper-library/
 
     compile:
       - input_paths:
