@@ -7,7 +7,7 @@
       "name": "OPA Gatekeeper",
       "slug": "gatekeeper",
       "parameter_key": "gatekeeper",
-      "test_cases": "defaults",
+      "test_cases": "defaults library",
       "add_lib": "n",
       "add_pp": "n",
       "add_golden": "y",
