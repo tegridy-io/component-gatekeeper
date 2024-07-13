@@ -1,0 +1,22 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  labels:
+    app: gatekeeper
+    chart: gatekeeper
+    gatekeeper.sh/system: 'yes'
+    heritage: Helm
+    release: gatekeeper
+  name: gatekeeper-controller-manager
+  namespace: syn-gatekeeper
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: gatekeeper
+      chart: gatekeeper
+      control-plane: controller-manager
+      gatekeeper.sh/operation: webhook
+      gatekeeper.sh/system: 'yes'
+      heritage: Helm
+      release: gatekeeper

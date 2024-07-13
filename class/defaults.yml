@@ -1,4 +1,41 @@
 parameters:
   gatekeeper:
     =_metadata: {}
-    namespace: syn-gatekeeper
+
+    namespace:
+      annotations: {}
+      labels:
+        admission.gatekeeper.sh/ignore: no-self-managing
+        pod-security.kubernetes.io/audit: restricted
+        pod-security.kubernetes.io/warn: restricted
+        pod-security.kubernetes.io/enforce: restricted
+      name: syn-gatekeeper
+
+    charts:
+      gatekeeper:
+        source: https://open-policy-agent.github.io/gatekeeper/charts
+        version: v3.16.3
+
+    resources:
+      controller:
+        requests:
+          cpu: 100m
+          memory: 512Mi
+        limits:
+          cpu: 1
+          memory: 512Mi
+
+    helmValues:
+      controllerManager:
+        resources: ${gatekeeper:resources:controller}
+
+      postInstall:
+        labelNamespace:
+          enabled: false
+        probeWebhook:
+          enabled: false
+      postUpgrade:
+        labelNamespace:
+          enabled: false
+        probeWebhook:
+          enabled: false
