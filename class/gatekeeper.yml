@@ -1,5 +1,12 @@
 parameters:
   kapitan:
+    dependencies:
+      - type: helm
+        source: ${gatekeeper:charts:gatekeeper:source}
+        chart_name: gatekeeper
+        version: ${gatekeeper:charts:gatekeeper:version}
+        output_path: ${_base_directory}/helmcharts/gatekeeper/${gatekeeper:charts:gatekeeper:version}/
+
     compile:
       - input_paths:
           - ${_base_directory}/component/app.jsonnet
@@ -9,3 +16,12 @@ parameters:
           - ${_base_directory}/component/main.jsonnet
         input_type: jsonnet
         output_path: gatekeeper/
+      - input_paths:
+          - ${_base_directory}/helmcharts/gatekeeper/${gatekeeper:charts:gatekeeper:version}
+        input_type: helm
+        output_path: ${_instance}//10_helmchart/
+        helm_values: ${gatekeeper:helmValues}
+        helm_params:
+          name: gatekeeper
+          namespace: ${gatekeeper:namespace:name}
+          dependency_update: false

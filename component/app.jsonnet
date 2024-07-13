@@ -3,7 +3,7 @@ local inv = kap.inventory();
 local params = inv.parameters.gatekeeper;
 local argocd = import 'lib/argocd.libjsonnet';
 
-local app = argocd.App('gatekeeper', params.namespace);
+local app = argocd.App('gatekeeper', params.namespace.name);
 
 {
   gatekeeper: app,
