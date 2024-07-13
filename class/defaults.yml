@@ -1,0 +1,4 @@
+parameters:
+  gatekeeper:
+    =_metadata: {}
+    namespace: syn-gatekeeper
