@@ -25,6 +25,8 @@ parameters:
           cpu: 1
           memory: 512Mi
 
+    library: {}
+
     helmValues:
       controllerManager:
         resources: ${gatekeeper:resources:controller}
